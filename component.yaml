@@ -1,0 +1,13 @@
+$schema: https://azuremlschemas.blob.core.windows.net/latest/component.schema.json
+name: basketball-scraper
+type: command
+inputs:
+  output:
+    type: uri_file
+command: |
+  python scraper.py --output ${{inputs.output}}
+
+code: .
+
+environment:
+  conda_file: requirements.txt
