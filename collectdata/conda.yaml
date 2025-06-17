@@ -1,0 +1,7 @@
+name: collectdata-env
+dependencies:
+  - python=3.9
+  - pip:
+    - basketball-reference-web-scraper
+    - pandas
+    - tqdm
