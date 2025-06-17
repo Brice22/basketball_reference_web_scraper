@@ -1,1 +1,22 @@
+$schema: https://azuremlschemas.blob.core.windows.net/latest/commandJob.schema.json
+type: command
+code: .
+command: python collectdata.py --start_year ${{inputs.start_year}} --end_year ${{inputs.end_year}} --output_dir ${{outputs.output}}
+
+inputs:
+  start_year:
+    type: integer
+    default: 2023
+  end_year:
+    type: integer
+    default: 2023
+
+outputs:
+  output:
+    type: uri_folder
+
+environment:
+  conda_file: conda.yaml
+
+compute: cpu-cluster
 
