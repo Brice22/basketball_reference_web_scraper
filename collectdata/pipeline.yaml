@@ -1,0 +1,9 @@
+$schema: https://azuremlschemas.blob.core.windows.net/latest/pipelineJob.schema.json
+type: pipeline
+
+jobs:
+  collect:
+    component: ./collectdata/job.yaml
+    inputs:
+      start_year: 2023
+      end_year: 2023
