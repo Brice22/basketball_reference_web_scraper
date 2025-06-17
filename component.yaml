@@ -1,13 +1,36 @@
-$schema: https://azuremlschemas.blob.core.windows.net/latest/component.schema.json
-name: basketball-scraper
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: basketball_scraper_component
+display_name: Basketball Data Scraper
+version: 1
 type: command
+description: A component to scrape NBA data from Basketball Reference.
+
 inputs:
-  output:
-    type: uri_file
-command: |
-  python scraper.py --output ${{inputs.output}}
+  start_year:
+    type: integer
+    optional: false
+    description: The first season end year to scrape (e.g., 2023 for 2022-2023 season).
+  end_year:
+    type: integer
+    optional: false
+    description: The last season end year to scrape (e.g., 2024 for 2023-2024 season).
+  output_dir:
+    type: uri_folder
+    mode: rw_mount
+    description: Directory to save the scraped data.
 
-code: .
+outputs:
+  scraped_data:
+    type: uri_folder
+    mode: rw_mount
+    description: The folder containing all scraped CSV files.
 
-environment:
-  conda_file: requirements.txt
+code: ./src # Relative path to your source code folder inside the zip
+
+environment: azureml:basketball-scraper-env:latest # Refer to your custom environment
+
+command: >-
+  python collect_data.py
+  --start_year ${{inputs.start_year}}
+  --end_year ${{inputs.end_year}}
+  --output_dir ${{outputs.scraped_data}}
