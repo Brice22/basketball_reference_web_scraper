@@ -1,2 +1,3 @@
 basketball-reference-web-scraper
 pandas
+tqdm
