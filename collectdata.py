@@ -11,7 +11,7 @@ logging.basicConfig(filename='debug.log',
                     level=logging.INFO,
                     format=' %(asctime)s - %(levelname)s - %(message)s')
 
-arser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser()
 parser.add_argument('--start_year', type=int, required=False, default=2022,
                     help='Starting season (Year)')
 parser.add_argument('--end_year', type=int, required=False, default=2022,
