@@ -6,6 +6,8 @@ import time
 from tqdm import tqdm
 import logging
 import argparse
+from pathlib import Path
+
 
 logging.basicConfig(filename='debug.log',
                     level=logging.INFO,
